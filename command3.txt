@@ -1,0 +1,8 @@
+python src\cli.py add 3 5        
+python src\cli.py add -- 3 -5 
+python src\cli.py add -- -3 -5 
+python src\cli.py subtract -- -3 -5 
+python src\cli.py subtract -- -3 5  
+python src\cli.py subtract -- 3 5 
+python src\cli.py subtract 3 5  
+python src\cli.py addition 3 5  

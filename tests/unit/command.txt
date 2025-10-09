@@ -1,0 +1,13 @@
+pytest tests/ -v 
+pytest tests/ --cov=src 
+pytest tests/ --cov=src --cov-report=html 
+pylint src/ 
+pylint src/ --output-format=text > lint_report.txt 
+pylint src/ --output-format=colorized 
+# pylint --generate-rcfile > .pylintrc 
+black src/ tests/ --check 
+black src/ tests/ --diff 
+black src/ tests/ 
+bandit -r src/ 
+bandit -r src/ -v 
+bandit -r src/ -f json -o security_report.json

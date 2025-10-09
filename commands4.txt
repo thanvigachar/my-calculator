@@ -1,0 +1,42 @@
+pytest tests/ -v 
+pytest tests/ --cov=src –cov-report=html 
+
+python src\cli.py multiply 8 9 
+python src\cli.py multiply -- 8 -9 
+python src\cli.py multiply -- -8 -9 
+python src\cli.py divide 10 11     
+python src\cli.py divide -- -10 11 
+python src\cli.py divide -- -10 -11 
+python src\cli.py power 10 11 
+pytest tests/ -v 
+pytest tests/ --cov=src 
+pytest tests/ --cov=src --cov-report=html
+
+pylint src/ 
+pylint src/ --output-format=text > lint_report.txt 
+pylint src/ --output-format=colorized 
+
+black src/ tests/ --check 
+black src/ tests/ --diff 
+black src/ tests/
+
+bandit -r src/ 
+bandit -r src/ -v 
+bandit -r src/ -f json -o security_report.json
+
+pylint src/ 
+pylint src/ --output-format=text > lint_report.txt 
+pylint src/ --output-format=colorized
+
+pytest tests/ -v 
+pytest tests/ --cov=src 
+pytest tests/ --cov=src --cov-report=html 
+pylint src/ 
+pylint src/ --output-format=text > lint_report.txt 
+pylint src/ --output-format=colorized 
+black src/ tests/ --check 
+black src/ tests/ --diff 
+black src/ tests/ 
+bandit -r src/ 
+bandit -r src/ -v 
+bandit -r src/ -f json -o security_report.json 
