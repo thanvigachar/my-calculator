@@ -1,15 +1,13 @@
 """
 Command Line Interface for Calculator
-Example: python src/cli.py add 5 3
+Example:
+    python src/cli.py add 5 3
+    python src/cli.py square_root 9
 """
 
 import sys
 import click
 from src.calculator import add, subtract, multiply, divide, power, square_root
-
-# import sys
-# import click
-# from calculator import add, subtract, multiply, divide, power, square_root
 
 
 @click.command()
@@ -27,15 +25,15 @@ def calculate(operation, num1, num2=None):
             result = multiply(num1, num2)
         elif operation == "divide":
             result = divide(num1, num2)
+        elif operation == "power":
+            result = power(num1, num2)
+        elif operation in ("square_root", "sqrt"):
+            result = square_root(num1)
         else:
             click.echo(f"Unknown operation: {operation}")
             sys.exit(1)
 
-        # Format result nicely
-        # if result == int(result):
-        #     click.echo(int(result))
-        # else:
-        #     click.echo(f"{result:.2f}")
+        # Format the result neatly
         if isinstance(result, float):
             if result.is_integer():
                 click.echo(int(result))
