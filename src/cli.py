@@ -1,5 +1,6 @@
 """
 Command Line Interface for Calculator
+
 Example:
     python src/cli.py add 5 3
     python src/cli.py square_root 9
@@ -15,7 +16,7 @@ from src.calculator import add, subtract, multiply, divide, power, square_root
 @click.argument("num1", type=float)
 @click.argument("num2", type=float, required=False)
 def calculate(operation, num1, num2=None):
-    """Simple calculator CLI"""
+    """Simple calculator CLI."""
     try:
         if operation == "add":
             result = add(num1, num2)
@@ -33,8 +34,9 @@ def calculate(operation, num1, num2=None):
             click.echo(f"Unknown operation: {operation}")
             sys.exit(1)
 
-        # Format the result neatly
+        # ✅ Format the result neatly
         if isinstance(result, float):
+            # If it's a whole number like 8.0, print as 8
             if result.is_integer():
                 click.echo(int(result))
             else:
@@ -45,10 +47,10 @@ def calculate(operation, num1, num2=None):
     except ValueError as e:
         click.echo(f"Error: {e}")
         sys.exit(1)
-    except Exception as e:
+    except Exception as e:  # pylint: disable=broad-exception-caught
         click.echo(f"Unexpected error: {e}")
         sys.exit(1)
 
 
 if __name__ == "__main__":
-    calculate()
+    calculate()  # pylint: disable=no-value-for-parameter
