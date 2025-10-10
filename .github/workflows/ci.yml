@@ -55,14 +55,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # ✅ Added this section to set PYTHONPATH before tests
       - name: Run Unit Tests with Coverage
         run: |
           echo "🧪 Running unit tests..."
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/src
           pytest tests/unit/ -v --cov=src --cov-report=term --cov-report=xml
 
       - name: Run Integration Tests
         run: |
           echo "🧩 Running integration tests..."
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/src
           pytest tests/integration/ -v --tb=short || true
 
   # ---------------------------------------------------------
@@ -88,6 +91,7 @@ jobs:
       - name: Run tests with coverage
         run: |
           echo "📊 Checking test coverage..."
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/src
           pytest tests/ --cov=src --cov-fail-under=80 --cov-report=term-missing --cov-report=html
 
       - name: Upload coverage HTML
